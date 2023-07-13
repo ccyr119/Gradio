@@ -21,5 +21,5 @@ def sepia(input_img):
     sepia_img /= sepia_img.max()
     return sepia_img
 
-demo = gr.Interface(sepia, gr.Image(shape=(200, 200)), "image")
+demo = gr.Interface(sepia, gr.Image(shape=(200, 200)), "image", flagging_dir="flag_sepia")
 demo.launch()
