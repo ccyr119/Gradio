@@ -5,13 +5,22 @@
 @说明    :
 @时间    :2023/07/06 18:10:08
 @作者    :ChenCY
+
 @版本    :1.0
 '''
 
 import gradio as gr
 
-def sketch_recognition(name):
-    return "Hello " + name + "!"
+placeholder = "Name Here..."
 
-demo = gr.Interface(fn=sketch_recognition, inputs="text", outputs="text")
+def greet(name : str, is_morning : bool, temperature : float):
+    salutation = "Good morning" if is_morning else "Good evening"
+    greeting = f"{salutation} {name}. It is {temperature} degress today"
+    celsius = (temperature - 32) * 5 / 9
+    return greeting, round(celsius, 2)
+
+demo = gr.Interface(fn=greet, 
+    inputs=["text", "checkbox", gr.Slider(0, 100)],
+    outputs=["text", "number"]
+)
 demo.launch()
